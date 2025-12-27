@@ -1,3 +1,21 @@
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "ap-south-1"
+}
+
+variable "account_id" {
+  description = "AWS account ID"
+  type        = string
+  default = "521145340284"
+}
+
+variable "ecr_repository_name" {
+  description = "ECR repository name"
+  type        = string
+  default = "dockerized-webapp"
+}
+
 variable "github_org" {
   type        = string
   default = "ahmadwasim7"

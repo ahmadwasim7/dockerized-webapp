@@ -29,5 +29,5 @@ resource "aws_iam_role" "github_actions_oidc" {
 
 resource "aws_iam_role_policy_attachment" "attach_ec2_policy" {
   role       = aws_iam_role.github_actions_oidc.name
-  policy_arn = aws_iam_policy.terraform_ci_infra_policy.arn
+  policy_arn = aws_iam_policy.ecr_push_policy.arn
 }
