@@ -1,0 +1,4 @@
+iam/github-actions/.terraform
+iam/github-actions/.terraform.lock.hcl
+iam/github-actions/terraform.tfstate
+iam/github-actions/terraform.tfstate.backup
