@@ -48,4 +48,4 @@ jobs:
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }}
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:latest
 
-# test comment just to push
+# test comment just to push - 2
