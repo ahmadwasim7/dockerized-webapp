@@ -49,19 +49,40 @@ jobs:
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:latest
 
       - name: Deploy via AWS SSM
+        id: deploy
         run: |
-          aws ssm send-command \
-          --document-name "AWS-RunShellScript" \
-          --targets "Key=instanceIds,Values=i-087ab6e86a55bc06f" \
-          --comment "Deploy Dockerized Web App" \
-          --parameters commands="[
-          \"docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\",
-          \"docker stop dockerized-webapp || true\",
-          \"docker rm dockerized-webapp || true\",
-          \"docker run -d --name dockerized-webapp -p 8080:8080 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\"
-          ]" \
-          --region us-east-1
+          COMMAND_ID=$(aws ssm send-command \
+            --document-name AWS-RunShellScript \
+            --targets "Key=instanceIds,Values=i-xxxxxxxxxxxxxxxxx" \
+            --comment "Deploy Dockerized Web App" \
+            --parameters commands="[
+            \"docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\",
+            \"docker stop dockerized-webapp || true\",
+            \"docker rm dockerized-webapp || true\",
+            \"docker run -d --name dockerized-webapp -p 8080:8080 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\"
+            ]" \
+            --region us-east-1 \
+            --query "Command.CommandId" \
+            --output text)
 
+          echo "SSM Command ID: $COMMAND_ID"
 
+          STATUS="InProgress"
+          while [[ "$STATUS" == "InProgress" || "$STATUS" == "Pending" ]]; do
+            sleep 5
+            STATUS=$(aws ssm list-command-invocations \
+              --command-id "$COMMAND_ID" \
+              --details \
+              --region us-east-1 \
+              --query "CommandInvocations[0].Status" \
+              --output text)
+            echo "Current status: $STATUS"
+          done
 
-#test
+          if [[ "$STATUS" != "Success" ]]; then
+            echo "❌ Deployment failed with status: $STATUS"
+            exit 1
+          fi
+
+          echo "✅ Deployment succeeded"
+
