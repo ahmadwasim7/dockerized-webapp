@@ -56,6 +56,8 @@ jobs:
             --targets "Key=instanceIds,Values=i-087ab6e86a55bc06f" \
             --comment "Deploy Dockerized Web App" \
             --parameters commands="[
+            \"set -euxo pipefail\",
+            \"aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 521145340284.dkr.ecr.us-east-1.amazonaws.com\",
             \"docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\",
             \"docker stop dockerized-webapp || true\",
             \"docker rm dockerized-webapp || true\",
