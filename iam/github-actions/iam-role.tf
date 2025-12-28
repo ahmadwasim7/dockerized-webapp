@@ -31,3 +31,8 @@ resource "aws_iam_role_policy_attachment" "attach_ec2_policy" {
   role       = aws_iam_role.github_actions_oidc.name
   policy_arn = aws_iam_policy.ecr_push_policy.arn
 }
+
+resource "aws_iam_role_policy_attachment" "attach_ssm_policy" {
+  role       = aws_iam_role.github_actions_oidc.name
+  policy_arn = aws_iam_policy.ssm_send_command_policy.arn
+}

@@ -48,21 +48,19 @@ jobs:
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }}
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:latest
 
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest
+      - name: Deploy via AWS SSM
+        run: |
+          aws ssm send-command \
+          --document-name "AWS-RunShellScript" \
+          --targets "Key=instanceIds,Values=i-087ab6e86a55bc06f" \
+          --comment "Deploy Dockerized Web App" \
+          --parameters commands="[
+          \"docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\",
+          \"docker stop dockerized-webapp || true\",
+          \"docker rm dockerized-webapp || true\",
+          \"docker run -d --name dockerized-webapp -p 8080:8080 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\"
+          ]" \
+          --region us-east-1
 
-            docker stop dockerized-webapp || true
-            docker rm dockerized-webapp || true
-
-            docker run -d \
-              --name dockerized-webapp \
-              -p 8080:8080 \
-              521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest
 
 
