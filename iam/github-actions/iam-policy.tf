@@ -63,3 +63,4 @@ resource "aws_iam_policy" "ssm_send_command_policy" {
   })
 }
 
+#test
