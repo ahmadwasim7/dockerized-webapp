@@ -48,4 +48,21 @@ jobs:
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:${{ github.sha }}
           docker push 521145340284.dkr.ecr.${AWS_REGION}.amazonaws.com/$ECR_REPOSITORY:latest
 
-# test comment just to push - 2
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest
+
+            docker stop dockerized-webapp || true
+            docker rm dockerized-webapp || true
+
+            docker run -d \
+              --name dockerized-webapp \
+              -p 8080:8080 \
+              521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest
+
+
