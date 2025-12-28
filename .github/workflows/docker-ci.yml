@@ -53,7 +53,7 @@ jobs:
         run: |
           COMMAND_ID=$(aws ssm send-command \
             --document-name AWS-RunShellScript \
-            --targets "Key=instanceIds,Values=i-xxxxxxxxxxxxxxxxx" \
+            --targets "Key=instanceIds,Values=i-087ab6e86a55bc06f" \
             --comment "Deploy Dockerized Web App" \
             --parameters commands="[
             \"docker pull 521145340284.dkr.ecr.us-east-1.amazonaws.com/dockerized-webapp:latest\",
