@@ -2,3 +2,11 @@ iam/github-actions/.terraform
 iam/github-actions/.terraform.lock.hcl
 iam/github-actions/terraform.tfstate
 iam/github-actions/terraform.tfstate.backup
+
+terraform-infra/.terraform
+terraform-infra/.terraform.lock.hcl
+
+bootstrap/backend/.terraform
+bootstrap/backend/.terraform.lock.hcl
+bootstrap/backend/terraform.tfstate
+bootstrap/backend/terraform.tfstate.backup

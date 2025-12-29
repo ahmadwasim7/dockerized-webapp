@@ -44,7 +44,7 @@ resource "aws_iam_policy" "ssm_send_command_policy" {
           "ssm:SendCommand"
         ]
         Resource = [
-          "arn:aws:ec2:us-east-1:521145340284:instance/i-087ab6e86a55bc06f",
+          "arn:aws:ec2:us-east-1:521145340284:instance/i-0c45a9e5ce89cc8f1",
           "arn:aws:ssm:us-east-1::document/AWS-RunShellScript"
         ]
       },
