@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dockerized Web Application | DevOps Project</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #00e5ff;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      color: #cfd8dc;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #00e5ff;
+    }
+
+    .card ul {
+      padding-left: 20px;
+    }
+
+    .card li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #b0bec5;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #00e5ff;
+      color: #003b44;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="badge">Production-Style DevOps Project</span>
+      <h1>Dockerized Web Application</h1>
+      <p>End-to-End CI/CD using Docker, AWS, GitHub Actions & Terraform</p>
+    </div>
+
+    <div class="card">
+      <h2>📌 Project Objective</h2>
+      <p>
+        This project demonstrates how a simple web application can be designed,
+        containerized, deployed, and continuously delivered using modern DevOps
+        best practices.
+      </p>
+      <p>
+        The focus is not on application complexity, but on building a
+        <strong>real-world, production-style delivery pipeline</strong> that
+        mirrors how applications are deployed and managed in professional
+        environments.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>⚙️ What This Project Showcases</h2>
+      <ul>
+        <li>Containerization of an application using <strong>Docker</strong></li>
+        <li>Secure image storage and versioning using <strong>AWS ECR</strong></li>
+        <li>Infrastructure provisioning with <strong>Terraform</strong></li>
+        <li>CI/CD automation using <strong>GitHub Actions</strong></li>
+        <li>Keyless AWS authentication via <strong>OIDC</strong></li>
+        <li>Secure, SSH-less deployment using <strong>AWS Systems Manager (SSM)</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🚀 Deployment Flow</h2>
+      <ul>
+        <li>Developer pushes code to GitHub</li>
+        <li>GitHub Actions builds a Docker image</li>
+        <li>Image is tagged and pushed to AWS ECR</li>
+        <li>EC2 instance pulls the image using IAM roles</li>
+        <li>Application is deployed automatically via SSM</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🔐 Security & Best Practices</h2>
+      <ul>
+        <li>No hardcoded AWS credentials</li>
+        <li>Least-privilege IAM policies</li>
+        <li>OIDC-based authentication</li>
+        <li>Remote Terraform state with locking</li>
+        <li>Automated, repeatable infrastructure</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      Built as a hands-on DevOps learning and portfolio project
+    </div>
+  </div>
+</body>
+</html>
