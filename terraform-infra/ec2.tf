@@ -27,6 +27,8 @@ resource "aws_instance" "app" {
     aws_security_group.app_sg.id
   ]
 
+  user_data = file("user_data.sh")
+
   tags = {
     Name = "dockerized-webapp-ec2"
   }
