@@ -53,7 +53,7 @@ jobs:
         run: |
           COMMAND_ID=$(aws ssm send-command \
             --document-name AWS-RunShellScript \
-            --targets "Key=instanceIds,Values=i-0c45a9e5ce89cc8f1" \
+            --targets "Key=instanceIds,Values=i-032b5a9a893818f23" \
             --comment "Deploy Dockerized Web App" \
             --parameters commands="[
             \"set -euxo pipefail\",
